@@ -1,6 +1,6 @@
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-ln -fsv "$SCRIPTPATH/vimrc" ~/.vimrc
-ln -fsv "$SCRIPTPATH/emacs.d/" ~/.emacs.d
-ln -fsv "$SCRIPTPATH/gitconfig" ~/.gitconfig
-ln -fsv "$SCRIPTPATH/oh-my-zsh/" ~/.oh-my-zsh
-ln -fsv "$SCRIPTPATH/zshrc" ~/.zshrc
+ln -fnsv "$SCRIPTPATH/vimrc" ~/.vimrc
+ln -fnsv "$SCRIPTPATH/emacs.d/" ~/.emacs.d
+ln -fnsv "$SCRIPTPATH/gitconfig" ~/.gitconfig
+ln -fnsv "$SCRIPTPATH/oh-my-zsh/" ~/.oh-my-zsh
+ln -fnsv "$SCRIPTPATH/zshrc" ~/.zshrc
