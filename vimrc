@@ -1,0 +1,353 @@
+" ==========================================================================
+"  .vimrc
+"
+"  Author: shsiang
+"  Derived from aw31 https://github.com/aw31
+"  Inspired by https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
+" ==========================================================================
+
+set nocompatible    " Let's Vim!
+filetype plugin on " addition
+
+" ==========================================================================
+"  Vundle
+" ==========================================================================
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Load plugins
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'jeaye/color_coded'
+Plugin 'cohama/lexima.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'lervag/vimtex'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Vimjas/vim-python-pep8-indent'
+
+call vundle#end()
+ filetype plugin indent on
+
+
+" ==========================================================================
+"  General config
+" ==========================================================================
+
+" " Make space leader character
+" let mapleader = " "
+" let g:mapleader = " "
+"
+" set noesckeys       " Ignore escape sequences
+" set mouse=a         " Turn on mouse support
+set number          " Turn on line numbers
+set wildmenu        " Sexier looking menus
+set history=100     " Remember the last 100 commands.
+set cursorline      " Highlight current line
+" set splitright      " Set vsplit to open in right pane
+set hidden          " Buffers are hidden instead of closed
+set scrolloff=5     " Keep at least 5 lines around cursor while scrolling
+
+" " Ignore certain file extensions in wildmenu
+" set wildignore+=*.gz,*.o,*.out,*.pdf,*.pyc                   " Binary files
+" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*                    " Directories
+" set wildignore+=*.aux,*.fdb_latexmk,*.fls,*.loa,*.pre,*.toc  " LaTeX
+"
+" " Disable annoying error sounds
+set noerrorbells
+set novisualbell
+"
+" " Enable Bash aliases
+" let $BASH_ENV = "~/.bash_aliases"
+"
+" " Save as superuser even when Vim isn't run with sudo
+" cmap w!! w !sudo tee > /dev/null %
+"
+" " Allow for longer .viminfo
+" :set viminfo='1000,<50,s10,h
+"
+" The following commands are defaults, but we set them for completeness:
+set backspace=indent,eol,start  " For sane backspace behavior
+set magic           " For sane regex behavior
+set ruler           " Show position in file
+set showmatch       " Show matching parens/brackets
+set spelllang=en_us  " Make US English default for spell checker
+
+
+" ==========================================================================
+"  Colors + fonts
+" ==========================================================================
+
+syntax enable       " Enable syntax highlighting
+" set background=dark   " ... all at once, everything looks different...
+" colorscheme solarized  " ... now that I see you.
+let term_profile=$ITERM_PROFILE
+let tmux=$TMUX
+if term_profile =~? 'Dark'
+  set background=dark
+elseif term_profile =~? 'Light'
+  set background=light
+else
+  set background=dark
+endif
+if tmux == '' && term_profile =~? 'Solarized'
+  colorscheme solarized
+endif
+
+set encoding=utf8   " Set utf8 as the standard encoding
+
+
+" ==========================================================================
+"  Text and tabs
+" ==========================================================================
+
+set expandtab       " Use spaces instead of tabs
+set ts=2 sw=2       " Tab = 2 spaces
+set smarttab        " Treats tabs semantically
+set autoindent      " Apply indentation of current line to next line
+
+set wrap            " Turn on word wrap
+set linebreak       " Only wrap at 'good' characters
+
+
+" ==========================================================================
+"  Swap, undo, and backup
+" ==========================================================================
+
+set swapfile                     " Enable swap files
+set directory=~/.vim/swap//      " Set swap directory
+
+set undofile                     " Enable persistent undo
+set undodir=~/.vim/undo//        " Set undo directory
+
+set backup                       " Enable backup files
+set backupdir=~/.vim/backup//    " Set backup directory
+
+
+" ==========================================================================
+"  Search
+" ==========================================================================
+
+set ignorecase      " Ignores case when search...
+set smartcase       " ...unless search contains uppercase letter
+set hlsearch        " Highlight search results
+set incsearch       " Make search incremental
+
+" Remap <CR><CR> to :noh
+nnoremap <leader><CR> :noh<CR>
+"
+" " Enable visual search, i.e. '*' and '#' work for highlighted text
+" vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+" vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+"
+"
+" " ==========================================================================
+" "  Navigation
+" " ==========================================================================
+"
+" set whichwrap+=h,l  " Allows h,l to wrap around lines (in normal mode)
+" set whichwrap+=<,>  " Allows arrow keys to wrap around lines in visual mode
+"
+" " Navigation between buffers
+" map <leader>k :bnext<cr>
+" map <leader>j :bprevious<cr>
+"
+" " Return to last edit position when opening file
+" au BufReadPost *
+"       \ if line("'\"") > 1 && line("'\"") <= line("$") |
+"       \   exe "normal! g'\"" |
+"       \ endif
+"
+" " Make navigation respect word wrap
+" au BufNewFile,BufRead .vimrc,*.txt,*.c,*.cc,*.java,*.py,*.js,*.sh,*.tex,*.md
+"       \ call SetWordWrapNavigation()
+"
+"
+" ==========================================================================
+"  Clean extra spaces
+" ==========================================================================
+
+" Delete trailing whitespaces on save
+au BufWritePre .vimrc,*.txt,*.c,*.cc,*.java,*.py,*.js,*.sh,*.tex
+      \ call CleanExtraSpaces()
+
+
+" ==========================================================================
+"  File-specific settings
+" ==========================================================================
+
+" Tab = 4 spaces in Python
+au BufNewFile,BufRead *.py setl ts=4 sw=4
+" Spellcheck on by default for TeX
+au BufNewFile,BufRead *.tex setl spell
+
+" ==========================================================================
+"  Plugin settings
+" ==========================================================================
+
+" VimTeX settings
+let g:tex_flavor = 'latex'
+" Disable all warnings
+let g:vimtex_quickfix_latexlog = {
+      \   'default' : 0,
+      \   'packages' : {
+      \     'default' : 0,
+      \   }
+      \ }
+" Configure VimTeX viewer
+let g:vimtex_view_general_viewer = 'qpdfview'
+let g:vimtex_view_general_options
+      \ = '--unique --instance vimtex @pdf\#src:@tex:@line:@col'
+" For reverse search, the qpdfview setting is:
+"     vim --servername TEX --remote-silent +%2<Enter>zz "%1"
+let g:vimtex_view_general_options_latexmk = '--unique --instance vimtex'
+let g:vimtex_view_automatic = 0
+" Compile on initialization, clean up on exit
+" au User VimtexEventInitPost call vimtex#compiler#compile()
+au User VimtexEventQuit call vimtex#compiler#clean(0)
+" Change vimtex imaps leader from '`' to ';'
+let g:vimtex_imaps_leader = ';'
+
+" Airline settings
+let g:airline_theme = 'solarized'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#vimtex#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+
+" fzf.vim settings
+nnoremap <leader>e :Files<cr>
+
+
+" ==========================================================================
+"  Lexima
+" ==========================================================================
+
+let custom_rules = []
+
+" Disable (/{/[ autoclose in the middle of strings.
+let no_autoclose = '\%#\w\|\%#[\\(\[{]'
+let custom_rules += [
+\ {'char': '(', 'at': no_autoclose, 'priority': 1},
+\ {'char': '{', 'at': no_autoclose, 'priority': 1},
+\ {'char': '[', 'at': no_autoclose, 'priority': 1},
+\ ]
+
+
+" Add autoclosing $ for TeX
+let math_open = '^\%#\|\s\%#\|[-(\[{]\%#'
+let custom_rules  += [
+\ {'char': '$', 'at': math_open, 'input_after': '$', 'filetype': 'tex'},
+\ {'char': '$', 'at': no_autoclose, 'filetype': 'tex'},
+\ {'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'},
+\ {'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'},
+\ ]
+
+" Add quote handling for TeX
+let custom_rules += [
+\ {'char': '`', 'input_after': '''', 'filetype': 'tex'},
+\ {'char': '<BS>', 'at': '`\%#''', 'input': '<BS>', 'delete': 1,
+\  'filetype': 'tex'},
+\ ]
+
+" Add escape sequence handling for TeX
+let custom_rules += [
+\ {'char': '$', 'at': '\\\%#', 'priority': 1, 'filetype': 'tex'},
+\ {'char': '(', 'at': '\\\%#', 'priority': 1, 'filetype': 'tex'},
+\ {'char': '{', 'at': '\\\%#', 'priority': 1, 'filetype': 'tex'},
+\ {'char': '[', 'at': '\\\%#', 'priority': 1, 'filetype': 'tex'},
+\ ]
+
+for rule in custom_rules
+  call lexima#add_rule(rule)
+endfor
+
+
+" ==========================================================================
+"  fasd integration
+" ==========================================================================
+
+" :J to jump to frecent directories
+command! -nargs=* J :call J(<f-args>)
+function! J(...)
+  let cmd = 'fasd -d -e printf'
+  for arg in a:000
+    let cmd = cmd . ' ' . arg
+  endfor
+  let path = system(cmd)
+  if isdirectory(path)
+    echo path
+    exec 'cd' fnameescape(path)
+  endif
+endfunction
+
+
+" ==========================================================================
+"  Cursor mode
+" ==========================================================================
+
+" Set cursor to indicate mode
+au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+au InsertEnter,InsertChange *
+      \ if v:insertmode == 'i' |
+      \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+      \ elseif v:insertmode == 'r' |
+      \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+      \ endif
+au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+
+
+" ==========================================================================
+"  Helper functions
+" ==========================================================================
+
+function! CmdLine(str)
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+
+  let l:pattern = escape(@", "\\/.*'$^~[]")
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  if a:direction == 'gv'
+    call CmdLine("Ack '" . l:pattern . "' " )
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  endif
+
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
+
+fun! CleanExtraSpaces()
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  silent! %s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
+endfun
+
+fun! SetWordWrapNavigation()
+  noremap  <silent> <buffer> j gj
+  noremap  <silent> <buffer> k gk
+  onoremap  <silent> <buffer> j gj
+  onoremap  <silent> <buffer> k gk
+endfun
+
+
+" ==========================================================================
+"  Project-specific .vimrc (Keep at end!)
+" ==========================================================================
+"
+" set exrc
+" set secure
