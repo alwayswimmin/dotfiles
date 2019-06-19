@@ -3,3 +3,4 @@ ln -fnsv "$SCRIPTPATH/vim/" ~/.vim
 ln -fnsv "$SCRIPTPATH/emacs.d/" ~/.emacs.d
 ln -fnsv "$SCRIPTPATH/oh-my-zsh/" ~/.oh-my-zsh
 ln -fnsv "$SCRIPTPATH/zshrc" ~/.zshrc
+ln -fnsv "$SCRIPTPATH/i3_config" ~/.config/i3/config
