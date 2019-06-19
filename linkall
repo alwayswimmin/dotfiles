@@ -1,5 +1,5 @@
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-ln -fnsv "$SCRIPTPATH/vimrc" ~/.vimrc
+ln -fnsv "$SCRIPTPATH/vim/" ~/.vim
 ln -fnsv "$SCRIPTPATH/emacs.d/" ~/.emacs.d
 ln -fnsv "$SCRIPTPATH/oh-my-zsh/" ~/.oh-my-zsh
 ln -fnsv "$SCRIPTPATH/zshrc" ~/.zshrc
