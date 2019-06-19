@@ -174,4 +174,4 @@ bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 10 # decrease s
 bindsym $mod+t exec --no-startup-id synclient TouchpadOff=$(( 1-$(synclient -l | grep TouchpadOff | cut -d = -f 2) ))
 
 # Lock
-bindsym $mod+Escape exec --no-startup-id sh ~/Documents/lock.sh
+bindsym $mod+Escape exec --no-startup-id sh ~/.dotfiles/lock.sh
