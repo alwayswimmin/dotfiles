@@ -31,10 +31,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'grailbio/bazel-compilation-database'
 
 call vundle#end()
  filetype plugin indent on
-
 
 " ==========================================================================
 "  General config
@@ -349,6 +349,6 @@ endfun
 " ==========================================================================
 "  Project-specific .vimrc (Keep at end!)
 " ==========================================================================
-"
-" set exrc
-" set secure
+
+set exrc
+set secure
