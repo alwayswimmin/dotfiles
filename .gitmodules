@@ -1,12 +1,12 @@
 [submodule "oh-my-zsh"]
 	path = third_party/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "third_party/emacs"]
+[submodule "emacs"]
 	path = third_party/emacs
-	url = ./third_party/emacs/
-[submodule "third_party/vim"]
+	url = https://github.com/emacs-mirror/emacs.git
+[submodule "vim"]
 	path = third_party/vim
-	url = ./third_party/vim
-[submodule "third_party/zsh"]
+	url = https://github.com/vim/vim.git
+[submodule "zsh"]
 	path = third_party/zsh
-	url = ./third_party/zsh
+	url = https://github.com/zsh-users/zsh.git
