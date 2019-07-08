@@ -114,4 +114,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -c"
+
+alias e=$EDITOR
+alias v=$VISUAL
+
+alias clip='xclip -selection clipboard'
+
 source ~/.zshrc_additions.sh
