@@ -7,21 +7,6 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (evil-collection company-ycmd ycmd which-key ycm org-contacts org-bullets org-evil use-package helm evil-visual-mark-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -32,7 +17,8 @@
 (use-package evil
   :ensure t
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  (add-hook 'c++-mode-hook #'(lambda () (modify-syntax-entry ?_ "w"))))
 
 (use-package lispy
   :ensure t
@@ -78,12 +64,15 @@
   (setq solarized-height-plus-4 1)
   :ensure t
   :config
-  (load-theme 'solarized-light t))
+  (if (string-suffix-p "Light" (getenv "ITERM_PROFILE")) (load-theme 'solarized-light t) (load-theme 'solarized-dark t))
+  (custom-set-faces (if (not window-system) '(default ((t (:background "nil")))))))
 
 (use-package ycmd
   :ensure t
   :config
-  (set-variable 'ycmd-server-command '("python" "/Users/shsiang/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/"))
+  ;; (set-variable 'ycmd-server-command '("python3" ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/")))
+  (set-variable 'ycmd-server-command '("python3" "/home/shsiang/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/"))
+  (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
   (add-hook 'after-init-hook #'global-ycmd-mode)
   (use-package company-ycmd
     :ensure t
@@ -95,3 +84,42 @@
   :ensure t
   :config
   (which-key-mode))
+
+(use-package clang-format
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c i") 'clang-format-region)
+  (global-set-key (kbd "C-c u") 'clang-format-buffer))
+
+(use-package powerline
+  :ensure t
+  :config
+  (powerline-center-evil-theme))
+
+(use-package magit
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
+
+(use-package protobuf-mode
+  :ensure t)
+
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(setq-default fill-column 80)
+
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(protobuf-mode powerline clang-format which-key company-ycmd ycmd solarized-theme org-bullets org-evil org-plus-contrib helm lispy evil use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background "nil")))))
