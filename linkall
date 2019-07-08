@@ -4,3 +4,4 @@ ln -fnsv "$SCRIPTPATH/emacs.d/" ~/.emacs.d
 ln -fnsv "$SCRIPTPATH/third_party/oh-my-zsh/" ~/.oh-my-zsh
 ln -fnsv "$SCRIPTPATH/zshrc" ~/.zshrc
 ln -fnsv "$SCRIPTPATH/i3_config" ~/.config/i3/config
+ln -fnsv "$SCRIPTPATH/tmux.conf" ~/.tmux.conf
