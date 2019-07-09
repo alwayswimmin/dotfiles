@@ -5,4 +5,4 @@ ln -fnsv "$SCRIPTPATH/third_party/oh-my-zsh/" ~/.oh-my-zsh
 ln -fnsv "$SCRIPTPATH/zshrc" ~/.zshrc
 ln -fnsv "$SCRIPTPATH/i3_config" ~/.config/i3/config
 ln -fnsv "$SCRIPTPATH/tmux.conf" ~/.tmux.conf
-ln -fnsv "$SCRIPTPATH/emacs.service" .config/systemd/user/emacs.service
+ln -fnsv "$SCRIPTPATH/emacs.service" ~/.config/systemd/user/emacs.service
