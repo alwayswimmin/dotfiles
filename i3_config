@@ -170,6 +170,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 10 # decrease screen brightness
 
+# Invert screen
+bindsym $mod+XF86MonBrightnessDown exec --no-startup-id xcalib -invert -alter
+
 # Toggle trackpad
 bindsym $mod+t exec --no-startup-id synclient TouchpadOff=$(( 1-$(synclient -l | grep TouchpadOff | cut -d = -f 2) ))
 
