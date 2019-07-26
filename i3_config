@@ -176,5 +176,10 @@ bindsym $mod+XF86MonBrightnessDown exec --no-startup-id xcalib -invert -alter
 # Toggle trackpad
 bindsym $mod+t exec --no-startup-id synclient TouchpadOff=$(( 1-$(synclient -l | grep TouchpadOff | cut -d = -f 2) ))
 
+# English and Chinese
+bindsym $mod+c exec --no-startup-id ibus engine pinyin
+bindsym $mod+Escape exec --no-startup-id ibus engine xkb:us::eng
+
+
 # Lock
-bindsym $mod+Escape exec --no-startup-id ~/.dotfiles/lock.sh
+bindsym $mod+Shift+Escape exec --no-startup-id ~/.dotfiles/lock.sh
