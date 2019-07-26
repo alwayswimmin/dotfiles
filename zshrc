@@ -45,7 +45,7 @@ HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -85,6 +85,7 @@ if contains $ITERM_PROFILE "Light"
 then
   SOLARIZED_THEME="light"
 fi
+DEFAULT_USER="shsiang"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,11 +115,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# NEWLINE=$'\n'
+# export PROMPT="$PROMPT${NEWLINE} "
+
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c"
 
 alias e=$EDITOR
 alias v=$VISUAL
+alias vn="v -n"
 
 alias clip='xclip -selection clipboard'
 
