@@ -49,7 +49,7 @@
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
     (setq org-bullets-bullet-list '("•")))
-  (setq org-agenda-files (list "~/org"))
+  (setq org-agenda-files (directory-files-recursively "~/org" "org$"))
   (add-hook 'org-mode-hook #'toggle-word-wrap)
   (require 'org-contacts))
 
