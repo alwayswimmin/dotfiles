@@ -180,6 +180,16 @@ bindsym $mod+t exec --no-startup-id synclient TouchpadOff=$(( 1-$(synclient -l |
 bindsym $mod+c exec --no-startup-id ibus engine pinyin
 bindsym $mod+Escape exec --no-startup-id ibus engine xkb:us::eng
 
-
 # Lock
 bindsym $mod+Shift+Escape exec --no-startup-id ~/.dotfiles/lock.sh
+
+# VNC settings
+bindsym $mod+Shift+i exec --no-startup-id xrandr --output DP-2 --mode 1920x1080
+
+# insert mode (pass almost all keybindings through to application)
+mode "insert" {
+        # back to normal: Mod1+Mod4+Escape
+        bindsym Mod1+Mod4+Escape mode "default"
+}
+
+bindsym $mod+i mode "insert"
