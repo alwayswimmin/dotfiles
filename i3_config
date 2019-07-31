@@ -162,16 +162,20 @@ exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
 exec --no-startup-id xcape -e 'Caps_Lock=Escape'
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +3% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -7% #decrease sound volume
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +1% #increase sound volume
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -1% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 3 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 7 # decrease screen brightness
+bindsym $mod+XF86MonBrightnessUp exec --no-startup-id sudo light -A 1 # increase screen brightness
+bindsym $mod+XF86MonBrightnessDown exec --no-startup-id sudo light -U 1 # decrease screen brightness
 
 # Invert screen
-bindsym $mod+XF86MonBrightnessDown exec --no-startup-id xcalib -invert -alter
+bindsym $mod+Shift+XF86MonBrightnessDown exec --no-startup-id xcalib -invert -alter
 
 # Toggle trackpad
 bindsym $mod+t exec --no-startup-id synclient TouchpadOff=$(( 1-$(synclient -l | grep TouchpadOff | cut -d = -f 2) ))
