@@ -21,15 +21,16 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'jeaye/color_coded'
+" Plugin 'jeaye/color_coded'
 Plugin 'cohama/lexima.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'lervag/vimtex'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'grailbio/bazel-compilation-database'
 Plugin 'rdnetto/YCM-Generator'
@@ -216,11 +217,19 @@ au User VimtexEventQuit call vimtex#compiler#clean(0)
 let g:vimtex_imaps_leader = ';'
 
 " Airline settings
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'solarized'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#vimtex#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
+" let g:airline_powerline_fonts = 1
+" let g:airline_theme = 'solarized'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#vimtex#enabled = 1
+" let g:airline#extensions#whitespace#enabled = 1
+
+" Powerline settings
+set laststatus=2
+set term=xterm-256color
+set termencoding=utf-8
+set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
+" set guifont=Ubuntu\ Mono
+let g:Powerline_symbols = 'fancy'
 
 " fzf.vim settings
 nnoremap <leader>e :Files<cr>

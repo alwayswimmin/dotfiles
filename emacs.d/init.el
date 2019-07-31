@@ -18,7 +18,8 @@
   :ensure t
   :config
   (evil-mode 1)
-  (add-hook 'c++-mode-hook #'(lambda () (modify-syntax-entry ?_ "w"))))
+  ;; (add-hook 'c++-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  )
 
 (use-package lispy
   :ensure t
@@ -70,13 +71,15 @@
 (use-package ycmd
   :ensure t
   :config
-  ;; (set-variable 'ycmd-server-command '("python3" ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/")))
-  (set-variable 'ycmd-server-command '("python3" "/home/shsiang/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/"))
+  (set-variable 'ycmd-server-command `("python3" ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/")))
   (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
   (add-hook 'after-init-hook #'global-ycmd-mode)
   (use-package company-ycmd
     :ensure t
     :config
+    (setq company-dabbrev-downcase 0)
+    (setq company-idle-delay 0)
+    (company-tng-configure-default)
     (company-ycmd-setup)
     (add-hook 'after-init-hook 'global-company-mode)))
 
@@ -104,9 +107,17 @@
 (use-package protobuf-mode
   :ensure t)
 
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq-default fill-column 80)
+
+(global-display-line-numbers-mode)
+
+(global-hl-line-mode 1)
+(set-face-attribute hl-line-face nil :underline t)
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
