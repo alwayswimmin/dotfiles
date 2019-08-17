@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $both Mod1+Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -103,6 +104,40 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+F1 workspace F1
+bindsym $mod+F2 workspace F2
+bindsym $mod+F3 workspace F3
+bindsym $mod+F4 workspace F4
+bindsym $mod+F5 workspace F5
+bindsym $mod+F6 workspace F6
+bindsym $mod+F7 workspace F7
+bindsym $mod+F8 workspace F8
+bindsym $mod+F9 workspace F9
+bindsym $mod+F10 workspace F10
+bindsym $mod+F11 workspace F11
+bindsym $mod+F12 workspace F12
+bindsym $both+1 workspace A1
+bindsym $both+2 workspace A2
+bindsym $both+3 workspace A3
+bindsym $both+4 workspace A4
+bindsym $both+5 workspace A5
+bindsym $both+6 workspace A6
+bindsym $both+7 workspace A7
+bindsym $both+8 workspace A8
+bindsym $both+9 workspace A9
+bindsym $both+0 workspace A10
+bindsym $both+F1 workspace AF1
+bindsym $both+F2 workspace AF2
+bindsym $both+F3 workspace AF3
+bindsym $both+F4 workspace AF4
+bindsym $both+F5 workspace AF5
+bindsym $both+F6 workspace AF6
+bindsym $both+F7 workspace AF7
+bindsym $both+F8 workspace AF8
+bindsym $both+F9 workspace AF9
+bindsym $both+F10 workspace AF10
+bindsym $both+F11 workspace AF11
+bindsym $both+F12 workspace AF12
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -115,6 +150,40 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+F1 move container to workspace F1
+bindsym $mod+Shift+F2 move container to workspace F2
+bindsym $mod+Shift+F3 move container to workspace F3
+bindsym $mod+Shift+F4 move container to workspace F4
+bindsym $mod+Shift+F5 move container to workspace F5
+bindsym $mod+Shift+F6 move container to workspace F6
+bindsym $mod+Shift+F7 move container to workspace F7
+bindsym $mod+Shift+F8 move container to workspace F8
+bindsym $mod+Shift+F9 move container to workspace F9
+bindsym $mod+Shift+F10 move container to workspace F10
+bindsym $mod+Shift+F11 move container to workspace F11
+bindsym $mod+Shift+F12 move container to workspace F12
+bindsym $both+Shift+1 move container to workspace A1
+bindsym $both+Shift+2 move container to workspace A2
+bindsym $both+Shift+3 move container to workspace A3
+bindsym $both+Shift+4 move container to workspace A4
+bindsym $both+Shift+5 move container to workspace A5
+bindsym $both+Shift+6 move container to workspace A6
+bindsym $both+Shift+7 move container to workspace A7
+bindsym $both+Shift+8 move container to workspace A8
+bindsym $both+Shift+9 move container to workspace A9
+bindsym $both+Shift+0 move container to workspace A10
+bindsym $both+Shift+F1 move container to workspace AF1
+bindsym $both+Shift+F2 move container to workspace AF2
+bindsym $both+Shift+F3 move container to workspace AF3
+bindsym $both+Shift+F4 move container to workspace AF4
+bindsym $both+Shift+F5 move container to workspace AF5
+bindsym $both+Shift+F6 move container to workspace AF6
+bindsym $both+Shift+F7 move container to workspace AF7
+bindsym $both+Shift+F8 move container to workspace AF8
+bindsym $both+Shift+F9 move container to workspace AF9
+bindsym $both+Shift+F10 move container to workspace AF10
+bindsym $both+Shift+F11 move container to workspace AF11
+bindsym $both+Shift+F12 move container to workspace AF12
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -156,8 +225,11 @@ bar {
         tray_output primary
 }
 
+# next and previous desktop
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
 
-# Remap caps-lock to cntrl+escape
+# Remap caps-lock to ctrl+escape
 exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
 exec --no-startup-id xcape -e 'Caps_Lock=Escape'
 
@@ -188,12 +260,13 @@ bindsym $mod+Escape exec --no-startup-id ibus engine xkb:us::eng
 bindsym $mod+Shift+Escape exec --no-startup-id ~/.dotfiles/lock.sh
 
 # VNC settings
-bindsym $mod+Shift+i exec --no-startup-id xrandr --output DP-2 --mode 1920x1080
+bindsym $both+r exec --no-startup-id xrandr --output DP-2 --mode 2560x1440
+bindsym $both+Shift+r exec --no-startup-id xrandr --output DP-2 --mode 1920x1080
 
 # insert mode (pass almost all keybindings through to application)
 mode "insert" {
-        # back to normal: Mod1+Mod4+Escape
-        bindsym Mod1+Mod4+Escape mode "default"
+        # back to normal: $both+Escape
+        bindsym $both+Escape mode "default"
 }
 
 bindsym $mod+i mode "insert"
