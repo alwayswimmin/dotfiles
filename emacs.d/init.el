@@ -17,9 +17,7 @@
 (use-package evil
   :ensure t
   :config
-  (evil-mode 1)
-  ;; (add-hook 'c++-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  )
+  (evil-mode 1))
 
 (use-package lispy
   :ensure t
@@ -38,9 +36,9 @@
 (use-package org
   :ensure org-plus-contrib
   :bind(("C-c l" . org-store-link)
-	("C-c a" . org-agenda)
-	("C-c c" . org-capture)
-	("C-c b" . org-switchb))
+        ("C-c a" . org-agenda)
+        ("C-c c" . org-capture)
+        ("C-c b" . org-switchb))
   :config
   (setq org-log-done t)
   (use-package org-evil
@@ -68,20 +66,20 @@
   (if (string-suffix-p "Light" (getenv "ITERM_PROFILE")) (load-theme 'solarized-light t) (load-theme 'solarized-dark t))
   (custom-set-faces (if (not window-system) '(default ((t (:background "nil")))))))
 
-(use-package ycmd
-  :ensure t
-  :config
-  (set-variable 'ycmd-server-command `("python3" ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/")))
-  (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
-  (add-hook 'after-init-hook #'global-ycmd-mode)
-  (use-package company-ycmd
-    :ensure t
-    :config
-    (setq company-dabbrev-downcase 0)
-    (setq company-idle-delay 0)
-    (company-tng-configure-default)
-    (company-ycmd-setup)
-    (add-hook 'after-init-hook 'global-company-mode)))
+;; (use-package ycmd
+;;   :ensure t
+;;   :config
+;;   (set-variable 'ycmd-server-command `("python3" ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/")))
+;;   (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
+;;   (add-hook 'after-init-hook #'global-ycmd-mode)
+;;   (use-package company-ycmd
+;;     :ensure t
+;;     :config
+;;     (setq company-dabbrev-downcase 0)
+;;     (setq company-idle-delay 0)
+;;     (company-tng-configure-default)
+;;     (company-ycmd-setup)
+;;     (add-hook 'after-init-hook 'global-company-mode)))
 
 (use-package which-key
   :ensure t
@@ -92,7 +90,9 @@
   :ensure t
   :config
   (global-set-key (kbd "C-c i") 'clang-format-region)
-  (global-set-key (kbd "C-c u") 'clang-format-buffer))
+  (global-set-key (kbd "C-c u") 'clang-format-buffer)
+  (setq clang-format-executable "/usr/bin/clang-format-6.0")
+  (setq clang-format-style-option "file"))
 
 (use-package powerline
   :ensure t
@@ -119,7 +119,10 @@
 (global-hl-line-mode 1)
 (set-face-attribute hl-line-face nil :underline t)
 
+(setq-default indent-tabs-mode nil)
+
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-11"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
