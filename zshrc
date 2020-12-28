@@ -4,6 +4,36 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Get the machine type.
+uname_out="$(uname -s)"
+case "${uname_out}" in
+    Linux*)     machine=linux;;
+    Darwin*)    machine=mac;;
+    *)          machine="unknown"
+esac
+echo "machine:\t${machine}"
+
+# Get the terminal environment.
+contains() {
+  string="$1"
+  substring="$2"
+  if test "${string#*$substring}" != "$string"
+  then
+    return 0    # $substring is in $string
+  else
+    return 1    # $substring is not in $string
+  fi
+}
+
+# Dark or light theme?
+if contains $ITERM_PROFILE "Light"
+then
+  theme="light"
+else
+  theme="dark"
+fi
+echo "theme:\t\t${theme}"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -70,21 +100,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-contains() {
-  string="$1"
-  substring="$2"
-  if test "${string#*$substring}" != "$string"
-  then
-    return 0    # $substring is in $string
-  else
-    return 1    # $substring is not in $string
-  fi
-}
-SOLARIZED_THEME="dark"
-if contains $ITERM_PROFILE "Light"
-then
-  SOLARIZED_THEME="light"
-fi
+SOLARIZED_THEME="${theme}"
 DEFAULT_USER="shsiang"
 
 source $ZSH/oh-my-zsh.sh
@@ -125,6 +141,14 @@ alias e=$EDITOR
 alias v=$VISUAL
 alias vn="v -n"
 
-alias clip='xclip -selection clipboard'
+case "${machine}" in
+    linux*) alias clip='xclip -selection clipboard';;
+    mac*)   alias clip='pbcopy';;
+    *)
+esac
 
-source ~/.zshrc_additions.sh
+if [ -f "~/.zshrc_additions.sh" ]
+then
+  echo "loading zsh additions"
+  source "~/.zshrc_additions.sh"
+fi
