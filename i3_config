@@ -307,8 +307,8 @@ bindsym $mod+Escape exec --no-startup-id ibus engine xkb:us::eng
 bindsym $mod+Shift+Escape exec --no-startup-id ~/.dotfiles/lock.sh
 
 # VNC settings
-bindsym $both+r exec --no-startup-id xrandr --output DP-0 --mode 2560x1440
-bindsym $both+Shift+r exec --no-startup-id xrandr --output DP-0 --mode 1920x1080
+bindsym $both+r exec --no-startup-id  xrandr --output DP-0 --auto --rotate left --output DP-2 --mode 2560x1440 --right-of DP-0
+bindsym $both+Shift+r exec --no-startup-id xrandr --output DP-0 --off --output DP-2 --mode 1920x1080
 
 # insert mode (pass almost all keybindings through to application)
 mode "insert" {

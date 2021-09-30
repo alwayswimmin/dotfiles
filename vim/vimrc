@@ -20,7 +20,7 @@ call vundle#begin()
 " Load plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'ycm-core/YouCompleteMe'
+" Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'jeaye/color_coded'
 Plugin 'cohama/lexima.vim'
 Plugin 'junegunn/fzf'
