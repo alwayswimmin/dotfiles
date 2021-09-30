@@ -1,8 +1,8 @@
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-ln -fnsv "$SCRIPTPATH/vim/" ~/.vim
-ln -fnsv "$SCRIPTPATH/emacs.d/" ~/.emacs.d
-ln -fnsv "$SCRIPTPATH/third_party/oh-my-zsh/" ~/.oh-my-zsh
-ln -fnsv "$SCRIPTPATH/zshrc" ~/.zshrc
-ln -fnsv "$SCRIPTPATH/i3_config" ~/.config/i3/config
-ln -fnsv "$SCRIPTPATH/tmux.conf" ~/.tmux.conf
-ln -fnsv "$SCRIPTPATH/emacs.service" ~/.config/systemd/user/emacs.service
+ln -Ffnsv "$SCRIPTPATH/vim/" ~/.vim
+ln -Ffnsv "$SCRIPTPATH/emacs.d/" ~/.emacs.d
+ln -Ffnsv "$SCRIPTPATH/third_party/oh-my-zsh/" ~/.oh-my-zsh
+ln -Ffnsv "$SCRIPTPATH/zshrc" ~/.zshrc
+ln -Ffnsv "$SCRIPTPATH/i3_config" ~/.config/i3/config
+ln -Ffnsv "$SCRIPTPATH/tmux.conf" ~/.tmux.conf
+ln -Ffnsv "$SCRIPTPATH/emacs.service" ~/.config/systemd/user/emacs.service

@@ -34,6 +34,7 @@ Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'grailbio/bazel-compilation-database'
 Plugin 'rdnetto/YCM-Generator'
+Plugin 'maksimr/vim-jsbeautify'
 
 call vundle#end()
  filetype plugin indent on
@@ -234,6 +235,18 @@ let g:Powerline_symbols = 'fancy'
 " fzf.vim settings
 nnoremap <leader>e :Files<cr>
 
+" js-beautify
+map <c-f> :call JsBeautify()
+" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()
+" for json
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()
+" for jsx
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()
 
 " ==========================================================================
 "  Lexima
