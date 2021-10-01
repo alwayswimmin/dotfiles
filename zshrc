@@ -150,8 +150,8 @@ case "${machine}" in
     *)
 esac
 
-if [ -f "~/.zshrc_additions.sh" ]
+if [ -f "$HOME/.zshrc_additions.sh" ]
 then
   echo "loading zsh additions"
-  source "~/.zshrc_additions.sh"
+  source "$HOME/.zshrc_additions.sh"
 fi
